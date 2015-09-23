@@ -23,7 +23,6 @@
 		//vajutas register nuppu
 		
 		if(isset($_POST["register"])) {
-			echo "vajutas register nuppu";
 			
 			if(empty($_POST["email"]))  {
 				$email_error = "VEATEADE: Email on kohustuslik!";
@@ -38,10 +37,16 @@
 				//kontrollin et olek vähemalt 8 sümbolit pikk
 				if(strlen($_POST["password"]) < 8) {
 					$password_error = "VEATEADE: Parool peab olema vähemalt 8 tähemärki pikk!";
+				}else {
+					if($_POST["password"] != $_POST["password_repeat"]) {
+						$password_repeat_error = "VEATEADE: Paroolid peavad kattuma!";
+					}else{
+						
+						$password = test_input($_POST["password"]);
+					}
+					
 				}
-				if($_POST["password"] != $_POST["password_repeat"]) {
-					$password_repeat_error = "VEATEADE: Paroolid peavad kattuma!";
-				}
+				
 			}
 			
 			if($email_error == "" && $password_error == "" && $password_repeat_error == ""){

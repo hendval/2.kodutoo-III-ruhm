@@ -35,11 +35,7 @@
 				
 				//kui oleme siia jõudnud siis parool ei ole tühi
 				//kontrollin et olek vähemalt 8 sümbolit pikk
-				if(strlen($_POST["password"]) < 8) {
-					
-					$password_error = "Parool peab olema vähemalt 8 tähemärki pikk!";
-					
-				}
+				$password = test_input($_POST["password"]);
 			}
 			
 			if($email_error == "" && $password_error == ""){
