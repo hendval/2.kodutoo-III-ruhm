@@ -1,5 +1,9 @@
 <?php
 
+	require_once("../../config.php");
+	$database = "if15_hendval";
+	$mysqli = new mysqli($servername, $username, $password, $database);
+	
 	// LOGIN.PHP
 	$email_error = "";
 	$password_repeat_error = "";
@@ -42,6 +46,12 @@
 			
 			if($email_error == "" && $password_error == "" && $password_repeat_error == ""){
 				echo " salvestan ab'i ". $email;
+				
+				$hash = hash("sha512", $password);
+				$stmt = $mysqli->prepare("INSERT INTO kasutajadb (email,password) VALUES (?,?)");
+				$stmt->bind_param("ss", $email, $hash);
+				$stmt->execute();
+				$stmt->close();
 				
 			}
 		}

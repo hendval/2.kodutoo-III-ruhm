@@ -1,6 +1,6 @@
 <?php
 
-	require_once("../config.php");
+	require_once("../../config.php");
 	$database = "if15_hendval";
 	$mysqli = new mysqli($servername, $username, $password, $database);
 
@@ -45,7 +45,7 @@
 			
 			if($email_error == "" && $password_error == ""){
 				
-				$hash = ("sha512", $password);
+				$hash = hash("sha512", $password);
 				$stmt = $mysqli->prepare("SELECT id, email FROM kasutajadb where email=? and password=?");
 				$stmt->bind_param("ss", $email, $password);
 				$stmt->bind_result($id_from_db, $email_from_db);
@@ -54,7 +54,7 @@
 				if($stmt->fetch()){
 					echo "email ja parool on õiged! Kasutaja id ".$id_from_db."ja email ".$email_from_db;
 				}else{
-					echo "parool või email on vale!"
+					echo "parool või email on vale!";
 				}
 				
 				$stmt->close();
