@@ -34,7 +34,6 @@
 			} else {
 				
 				//kui oleme siia jõudnud siis parool ei ole tühi
-				//kontrollin et olek vähemalt 8 sümbolit pikk
 				$password = test_input($_POST["password"]);
 			}
 			

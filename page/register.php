@@ -98,7 +98,7 @@
 				<input name="password" type="password" placeholder="Parool"> <?php echo $password_error; ?><br>
 				Parool uuesti:<br>
 				<input name="password_repeat" type="password" placeholder="Parool uuesti"> <?php echo $password_error; ?><br><br>
-				<input name="register" type="submit" value="Registreeri"><br><br>
+				<input name="register" type="submit" value="Registreeri"><br>
 				<?php echo $password_repeat_error; ?>
 			</form>
 <a href="login.php">Kasutaja olemas? Logi sisse siin!</a>
