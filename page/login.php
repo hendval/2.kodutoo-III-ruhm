@@ -20,7 +20,6 @@
 		
 		//vajutas login nuppu
 		if(isset($_POST["login"])){
-			echo "vajutas login nuppu!";
 			
 			
 			if(empty($_POST["email"]))  {
@@ -47,19 +46,17 @@
 				
 				$hash = hash("sha512", $password);
 				$stmt = $mysqli->prepare("SELECT id, email FROM kasutajadb where email=? and password=?");
-				$stmt->bind_param("ss", $email, $password);
+				$stmt->bind_param("ss", $email, $hash);
 				$stmt->bind_result($id_from_db, $email_from_db);
 				$stmt->execute();
 				
 				if($stmt->fetch()){
-					echo "email ja parool on õiged! Kasutaja id ".$id_from_db."ja email ".$email_from_db;
+					echo "email ja parool on õiged! Kasutaja id ".$id_from_db." ja email ".$email_from_db;
 				}else{
 					echo "parool või email on vale!";
 				}
 				
 				$stmt->close();
-				
-				echo " kontrollin sisselogimist ".$email." ja parool";
 				
 			}
 			
